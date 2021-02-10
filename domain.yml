@@ -1,0 +1,113 @@
+actions:
+- action_search_restaurants
+- action_send_email
+- utter_ask_budget
+- utter_ask_cuisine
+- utter_ask_email
+- utter_ask_emailid
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_default
+- utter_goodbye
+- utter_greet
+- utter_restart
+- verify_budget
+- verify_cuisine
+- verify_location
+entities:
+- budgetmax
+- budgetmin
+- cuisine
+- emailid
+- location
+intents:
+- restaurant_search
+- affirm
+- dont_send_email
+- send_mail
+- greet
+- thankyou
+- goodbye
+- deny
+responses:
+  utter_ask_budget:
+  - buttons:
+    - payload: /restaurant_search{"budgetmin":"0","budgetmax":"300"}
+      title: Less than Rs. 300
+    - payload: /restaurant_search{"budgetmin":"300","budgetmax":"700"}
+      title: Rs. 300 to Rs. 700
+    - payload: /restaurant_search{"budgetmin":"700","budgetmax":"10000"}
+      title: More than Rs. 700
+    text: What price range are you looking for?
+  utter_ask_cuisine:
+  - buttons:
+    - payload: Chinese
+      title: Chinese
+    - payload: Italian
+      title: Italian
+    - payload: American
+      title: American
+    - payload: Mexican
+      title: Mexican
+    - payload: South Indian
+      title: South Indian
+    - payload: North Indian
+      title: North Indian
+    text: What kind of cuisine would you like?
+  utter_ask_email:
+  - buttons:
+    - payload: /send_mail
+      title: Yes
+    - payload: /dont_send_email
+      title: No
+    text: Do you want a list of top 10 restaurants in your email?
+  utter_ask_emailid:
+  - text: Please, enter your email id.
+  utter_ask_howcanhelp:
+  - text: How can I help you?
+  utter_ask_location:
+  - text: In what location?
+  utter_default:
+  - text: default message
+  utter_goodbye:
+  - text: Goodbye!
+  - text: Happy Dining!
+  - text: Bon Appetit!
+  utter_greet:
+  - text: Hey there! How may I help you?
+  - text: Hi, How can I help you!
+  - text: Hey, How is it going. How may I help you today?
+  utter_restart:
+  - text: What can I help you with now?
+session_config:
+  carry_over_slots_to_new_session: true
+  session_expiration_time: 0
+slots:
+  budget_ok:
+    initial_value: false
+    type: bool
+  budgetmax:
+    initial_value: 10000.0
+    max_value: 10000.0
+    min_value: 0.0
+    type: float
+  budgetmin:
+    initial_value: 0.0
+    max_value: 1.0
+    min_value: 0.0
+    type: float
+  cuisine:
+    type: text
+  cuisine_ok:
+    initial_value: false
+    type: bool
+  emailid:
+    type: text
+  location:
+    type: text
+  location_ok:
+    initial_value: false
+    type: bool
+  restaurant_exist:
+    initial_value: false
+    type: bool
